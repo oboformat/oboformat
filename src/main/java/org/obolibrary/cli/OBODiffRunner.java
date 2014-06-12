@@ -106,7 +106,7 @@ public class OBODiffRunner {
         OBODocDiffer dd = new OBODocDiffer();
         OBODoc obodoc1 = obodocs.get(0);
         OBODoc obodoc2 = obodocs.get(1);
-        List<Diff> diffs = dd.getDiffs(obodoc1, obodoc2);
+        List<Diff> diffs = OBODocDiffer.getDiffs(obodoc1, obodoc2);
         for (Diff diff : diffs) {
             System.out.println("MDiff=" + diff);
         }
@@ -351,7 +351,7 @@ public class OBODiffRunner {
         OWLAnnotation ann = fac
                 .getOWLAnnotation(ap, fac.getOWLLiteral(version));
         OWLAxiom ax = fac.getOWLAnnotationAssertionAxiom(ontology
-                .getOntologyID().getOntologyIRI(), ann);
+                .getOntologyID().getOntologyIRI().get(), ann);
         manager.applyChange(new AddAxiom(ontology, ax));
     }
 }

@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import org.junit.Test;
 import org.obolibrary.cli.OBORunnerConfiguration.ExpandMacrosModeOptions;
-import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
+import org.semanticweb.owlapi.formats.RDFXMLOntologyFormat;
 import org.semanticweb.owlapi.model.OWLOntologyFormat;
 
 @SuppressWarnings("javadoc")

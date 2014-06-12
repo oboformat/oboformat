@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
-import org.coode.owlapi.manchesterowlsyntax.ManchesterOWLSyntaxOntologyFormat;
-import org.semanticweb.owlapi.io.OWLXMLOntologyFormat;
-import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
+import org.semanticweb.owlapi.formats.ManchesterOWLSyntaxOntologyFormat;
+import org.semanticweb.owlapi.formats.OWLXMLOntologyFormat;
+import org.semanticweb.owlapi.formats.RDFXMLOntologyFormat;
 import org.semanticweb.owlapi.model.OWLOntologyFormat;
 
 public class OBORunnerConfiguration {
@@ -141,11 +141,11 @@ public class OBORunnerConfiguration {
         @Override
         public boolean setValue(String to) {
             if (to.equals("owlxml")) {
-                this.value = new OWLXMLOntologyFormat();
+                value = new OWLXMLOntologyFormat();
             } else if (to.contains("manchester")) {
-                this.value = new ManchesterOWLSyntaxOntologyFormat();
+                value = new ManchesterOWLSyntaxOntologyFormat();
             } else if (to.contains("RDF")) {
-                this.value = new RDFXMLOntologyFormat();
+                value = new RDFXMLOntologyFormat();
             } else {
                 failureMessage = "don't know format '" + to
                         + "' -- reverting to default: " + value;

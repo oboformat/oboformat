@@ -3,6 +3,7 @@ package org.obolibrary.owl;
 import java.io.File;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.formats.LabelFunctionalFormat;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyFormat;
@@ -15,7 +16,8 @@ public class WriteLabels {
 
     public static void main(String[] args) throws Exception {
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-        manager.addOntologyStorer(new LabelFunctionalSyntaxOntologyStorer());
+        manager.getOntologyStorers().add(
+                new LabelFunctionalSyntaxOntologyStorer());
         OWLOntology ontology = manager.loadOntology(IRI
                 .create("http://purl.obolibrary.org/obo/tao.owl"));
         OWLOntologyFormat format = new LabelFunctionalFormat();

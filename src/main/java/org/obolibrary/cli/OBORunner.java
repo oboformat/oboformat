@@ -32,9 +32,9 @@ import org.obolibrary.oboformat.parser.OBOFormatDanglingReferenceException;
 import org.obolibrary.oboformat.parser.OBOFormatParser;
 import org.obolibrary.oboformat.parser.OBOFormatParserException;
 import org.obolibrary.oboformat.writer.OBOFormatWriter;
-import org.obolibrary.owl.LabelFunctionalFormat;
 import org.obolibrary.owl.LabelFunctionalSyntaxOntologyStorer;
-import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
+import org.semanticweb.owlapi.formats.LabelFunctionalFormat;
+import org.semanticweb.owlapi.formats.RDFXMLOntologyFormat;
 import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.AddImport;
 import org.semanticweb.owlapi.model.IRI;
@@ -125,7 +125,8 @@ public class OBORunner {
                         + " via " + format);
                 manager.saveOntology(ontology, format, outputStream);
                 if (config.writeLabelOWL.getValue()) {
-                    manager.addOntologyStorer(new LabelFunctionalSyntaxOntologyStorer());
+                    manager.getOntologyStorers().add(
+                            new LabelFunctionalSyntaxOntologyStorer());
                     OWLOntologyFormat labelFormat = new LabelFunctionalFormat();
                     IRI labelFile = IRI.create(new File(config.outputdir
                             .getValue(), ontologyId + ".ofn")
@@ -447,7 +448,7 @@ public class OBORunner {
         OWLAnnotation ann = fac
                 .getOWLAnnotation(ap, fac.getOWLLiteral(version));
         OWLAxiom ax = fac.getOWLAnnotationAssertionAxiom(ontology
-                .getOntologyID().getOntologyIRI(), ann);
+                .getOntologyID().getOntologyIRI().get(), ann);
         manager.applyChange(new AddAxiom(ontology, ax));
     }
 }
