@@ -1,3 +1,5 @@
+ARCHIVED: use https://github.com/owlcollab/oboformat instead
+
 ABOUT
 
 This project is intented to hold the documentation for the OBO-Format.
